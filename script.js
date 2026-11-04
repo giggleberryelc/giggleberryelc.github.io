@@ -27,7 +27,9 @@ if (endpointReady) {
   configNotice.hidden = true;
 }
 const dobInput = form.elements.dob;
-dobInput.max = new Date().toLocaleDateString('en-CA', {timeZone: 'America/Vancouver'});
+const maxDOB = new Date();
+maxDOB.setFullYear(maxDOB.getFullYear() + 5);
+dobInput.max = maxDOB.toLocaleDateString('en-CA', {timeZone: 'America/Vancouver'});
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -38,8 +40,8 @@ form.addEventListener('submit', async (event) => {
 
   const payload = Object.fromEntries(new FormData(form).entries());
   if (payload.website) return;
-  if (payload.dob > new Date().toLocaleDateString('en-CA', {timeZone: 'America/Vancouver'})) {
-    message.textContent = 'Please enter a valid date of birth.';
+  if (payload.dob > dobInput.max) {
+    message.textContent = 'Date of birth cannot be more than 5 years in the future.';
     message.classList.add('error');
     return;
   }

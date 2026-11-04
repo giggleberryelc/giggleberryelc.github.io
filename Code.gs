@@ -25,7 +25,12 @@ function doPost(e) {
     if (!name || !child || !phone || !email || !dob || !start || !data.consent) throw new Error('Required fields missing');
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) throw new Error('Invalid email');
     const today = new Date(); today.setHours(0,0,0,0);
-    if (dob > today) throw new Error('Date of birth cannot be in the future');
+    const maxDOB = new Date(today);
+    maxDOB.setFullYear(maxDOB.getFullYear() + 5);
+
+    if (dob > maxDOB) {
+      throw new Error('Date of birth cannot be more than 5 years in the future');
+    }
     if (dob.getFullYear() < today.getFullYear() - 18) throw new Error('Date of birth out of range');
 
     if (!lock.tryLock(10000)) throw new Error('Busy; retry submission');
