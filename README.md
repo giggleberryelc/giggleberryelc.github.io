@@ -4,9 +4,6 @@ A static, mobile-friendly site deployable on free GitHub Pages, with a Google Sh
 
 ## Google Sheet
 
-The target Sheet is:
-https://docs.google.com/spreadsheets/d/1qa5JO0F9RkOcWCagtYLrdqv5k80pfZwKQNoxvzz9IGo/edit
-
 Row 1 must contain exactly these headings in columns A–G:
 
 `Name | Child | DOB | Age | Email | Phone Number | Expected Start Date`
