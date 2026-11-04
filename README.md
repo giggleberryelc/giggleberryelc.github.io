@@ -30,7 +30,7 @@ The public form asks for the six non-Age columns. The script inserts the Age for
 1. Create a **public** GitHub repository, e.g. `giggleberry-elc` (GitHub Pages free hosting for standard GitHub accounts requires a public repo).
 2. Upload `index.html`, `styles.css`, and `script.js` to the repository root. Do **not** upload your spreadsheet data or parent submissions.
 3. Under **Settings → Pages**, choose **Deploy from a branch**, `main`, `/ (root)`, and Save.
-4. Your site URL will be `https://YOUR-GITHUB-USERNAME.github.io/giggleberry-elc/`.
+4. Your site URL will be `https://giggleberryelc.github.io/`.
 5. If editing after publication, commit changes to GitHub to publish the updated site.
 
 ### Security and privacy
