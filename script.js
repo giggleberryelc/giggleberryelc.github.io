@@ -65,3 +65,46 @@ form.addEventListener('submit', async (event) => {
     submitButton.innerHTML = 'Submit waitlist request <span aria-hidden="true">↗</span>';
   }
 });
+
+
+// Gentle classroom slideshow; pauses during interaction and respects reduced-motion preferences.
+(() => {
+  const carousel = document.querySelector('#hero-slideshow');
+  if (!carousel) return;
+  const slides = Array.from(carousel.querySelectorAll('.slide'));
+  const dots = Array.from(carousel.querySelectorAll('.slide-dot'));
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let current = 0;
+  let timer;
+  const delay = 5800;
+
+  function showSlide(next) {
+    current = (next + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      const active = i === current;
+      slide.classList.toggle('is-active', active);
+      slide.setAttribute('aria-hidden', String(!active));
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === current);
+      if (i === current) dot.setAttribute('aria-current', 'true');
+      else dot.removeAttribute('aria-current');
+    });
+  }
+  function stop() { window.clearInterval(timer); timer = undefined; }
+  function start() {
+    stop();
+    if (!reduceMotion.matches && !document.hidden) timer = window.setInterval(() => showSlide(current + 1), delay);
+  }
+  carousel.querySelector('#slide-prev').addEventListener('click', () => { showSlide(current - 1); start(); });
+  carousel.querySelector('#slide-next').addEventListener('click', () => { showSlide(current + 1); start(); });
+  dots.forEach((dot, i) => dot.addEventListener('click', () => { showSlide(i); start(); }));
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', (e) => { if (!carousel.contains(e.relatedTarget)) start(); });
+  document.addEventListener('visibilitychange', start);
+  if (reduceMotion.addEventListener) reduceMotion.addEventListener('change', start);
+  showSlide(0);
+  start();
+})();
