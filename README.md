@@ -2,9 +2,7 @@
 
 A static, mobile-friendly site deployable on free GitHub Pages, with a Google Sheets waitlist and Google Apps Script email notifications.
 
-## Google Sheet
-
-Row 1 must contain exactly these headings in columns A–G:
+In the Google Sheet Row 1 must contain exactly these headings in columns A–G:
 
 `Name | Child | DOB | Age | Email | Phone Number | Expected Start Date`
 

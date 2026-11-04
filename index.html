@@ -9,8 +9,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,500,30,1;9..144,600,30,1;9..144,700,30,1&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="script.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261104-2" />
+  <!-- Critical slideshow layout: keeps images in the SAME frame even if CSS is cached. -->
+  <style>
+    #hero-slideshow{position:relative;min-width:0;width:100%;max-width:570px;margin:0 auto;isolation:isolate}
+    #hero-slideshow .slideshow-stage{position:relative;width:100%;height:clamp(350px,40vw,490px);overflow:hidden;border-radius:44% 44% 22% 22% / 25% 25% 17% 17%;background:#e7ded5;box-shadow:18px 22px 0 rgba(179,67,96,.08),0 25px 60px rgba(61,43,54,.14)}
+    #hero-slideshow .slideshow-stage > img.slide{position:absolute!important;inset:0!important;display:block!important;width:100%!important;height:100%!important;max-width:none!important;object-fit:cover!important;object-position:center;opacity:0;visibility:hidden;transform:scale(1.05);transition:opacity 1.55s ease,transform 6.5s ease,visibility 0s linear 1.55s;pointer-events:none}
+    #hero-slideshow .slideshow-stage > img.slide.is-active{opacity:1;visibility:visible;transform:scale(1);transition:opacity 1.55s ease,transform 6.5s ease,visibility 0s;z-index:1}
+    #hero-slideshow .slide-shade{position:absolute;inset:48% 0 0;z-index:2;pointer-events:none;background:linear-gradient(transparent,rgba(29,27,39,.38))}
+    #hero-slideshow .slide-caption{position:absolute;bottom:24px;left:26px;z-index:3;color:white;font-weight:700;text-shadow:0 2px 8px #0005}
+    #hero-slideshow .slideshow-controls{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:19px}
+    #hero-slideshow .slide-dots{display:flex;align-items:center;gap:10px}
+    #hero-slideshow .slide-arrow{display:grid;place-items:center;width:35px;height:35px;border:1px solid #e5d6da;border-radius:50%;background:#fffaf5;color:#78324d;cursor:pointer}
+    #hero-slideshow .slide-dot{width:9px;height:9px;padding:0;border:0;border-radius:50%;background:#d9bdc6;cursor:pointer;transition:width .3s,background .3s}
+    #hero-slideshow .slide-dot.is-active{width:27px;border-radius:12px;background:#9d3756}
+    @media(max-width:740px){#hero-slideshow .slideshow-stage{height:clamp(300px,76vw,440px)}}
+    @media(prefers-reduced-motion:reduce){#hero-slideshow .slideshow-stage > img.slide{transition:none!important;transform:none!important}}
+  </style>
+
+  <script src="script.js?v=20261104-2" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
